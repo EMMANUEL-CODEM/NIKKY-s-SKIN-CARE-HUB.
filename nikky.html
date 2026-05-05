@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nikkk SKIN-CARE-HUB</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FAF6F1',
+            gold: '#C9A84C',
+            rose: '#E8C4B8',
+            bark: '#6B4F3A',
+            deep: '#1A0F0A',
+          },
+          fontFamily: {
+            display: ['Cormorant Garamond', 'serif'],
+            body: ['Jost', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { scroll-behavior: smooth; }
+    body { background-color: #FAF6F1; font-family: 'Jost', sans-serif; }
+
+    /* Navbar scroll effect */
+    #navbar {
+      transition: all 0.4s ease;
+    }
+    #navbar.scrolled {
+      background-color: #1A0F0A;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    #mobile-menu.open {
+      max-height: 400px;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="text-deep">
+
+    <!-- ===== PAGE LOADER ===== -->
+<div id="loader" class="fixed inset-0 z-[9999] bg-deep flex flex-col items-center justify-center">
+
+  <!-- Logo -->
+  <div class="flex flex-col items-center gap-2 mb-10" style="animation: fadeSlideUp 0.8s ease forwards;">
+    <span class="font-display text-4xl text-gold tracking-widest">NIKKY's</span>
+    <span class="font-body text-xs text-rose/50 tracking-[0.4em] uppercase">SKIN-CARE-HUB</span>
+  </div>
+
+  <!-- Animated loader ring -->
+  <div class="relative w-16 h-16">
+    <div class="absolute inset-0 rounded-full border border-white/5"></div>
+    <div class="absolute inset-0 rounded-full border-t-2 border-gold animate-spin"></div>
+    <div class="absolute inset-2 rounded-full border border-white/5"></div>
+    <div class="absolute inset-2 rounded-full border-t border-rose/40 animate-spin" style="animation-duration: 1.5s;"></div>
+    <!-- Center dot -->
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="w-2 h-2 rounded-full bg-gold animate-pulse"></div>
+    </div>
+  </div>
+
+  <!-- Loading text -->
+  <p class="font-body text-xs tracking-[0.4em] uppercase text-rose/30 mt-8" id="loader-text">Loading...</p>
+
+  <!-- Progress bar -->
+  <div class="mt-4 w-40 h-px bg-white/5 overflow-hidden">
+    <div class="h-full bg-gradient-to-r from-gold via-rose to-gold" id="loader-bar"
+      style="width: 0%; transition: width 0.3s ease;"></div>
+  </div>
+
+</div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 px-6 md:px-16 py-4 flex items-center justify-between bg-transparent">
+
+    <!-- Logo -->
+    <a href="#" class="flex flex-col leading-tight">
+      <span class="font-display text-2xl text-gold tracking-widest">NIKKY'S</span>
+      <span class="font-body text-xs text-rose tracking-[0.3em] uppercase">SKIN-CARE-HUB</span>
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <ul class="hidden md:flex items-center gap-10 font-body text-sm tracking-widest uppercase text-cream">
+      <li><a href="#services" class="hover:text-gold transition-colors duration-300">Services</a></li>
+      <li><a href="#products" class="hover:text-gold transition-colors duration-300">Products</a></li>
+      <li><a href="#gallery" class="hover:text-gold transition-colors duration-300">Gallery</a></li>
+      <li><a href="#about" class="hover:text-gold transition-colors duration-300">About</a></li>
+      <li><a href="#contact" class="hover:text-gold transition-colors duration-300">Contact</a></li>
+    </ul>
+
+    <!-- Book Button (Desktop) -->
+    <a href="#booking"
+      class="hidden md:inline-block font-body text-xs tracking-widest uppercase px-6 py-3 border border-gold text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+      Book Now
+    </a>
+
+    <!-- Hamburger (Mobile) -->
+    <button id="menu-btn" class="md:hidden text-gold text-2xl focus:outline-none">
+      <i class="fas fa-bars" id="menu-icon"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed top-[68px] left-0 w-full bg-deep z-40 px-8 py-4 flex flex-col gap-5 font-body text-sm tracking-widest uppercase text-cream">
+    <a href="#services" class="hover:text-gold transition-colors" onclick="closeMenu()">Services</a>
+    <a href="#products" class="hover:text-gold transition-colors" onclick="closeMenu()">Products</a>
+    <a href="#gallery" class="hover:text-gold transition-colors" onclick="closeMenu()">Gallery</a>
+    <a href="#about" class="hover:text-gold transition-colors" onclick="closeMenu()">About</a>
+    <a href="#contact" class="hover:text-gold transition-colors" onclick="closeMenu()">Contact</a>
+    <a href="#booking" class="mt-2 text-center border border-gold text-gold py-3 hover:bg-gold hover:text-deep transition-all" onclick="closeMenu()">Book Now</a>
+  </div>
+
+
+  <!-- ===== PLACEHOLDER (Next steps go here) ===== -->
+  <main>
+    <!-- Hero, Services, Products, Booking etc. will be added below step by step -->
+
+    <!-- ===== HERO SECTION ===== -->
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-deep">
+
+  <!-- Background layered gradients -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-deep via-bark/40 to-deep"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#C9A84C22_0%,_transparent_60%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_#E8C4B822_0%,_transparent_60%)]"></div>
+
+    <!-- Decorative grain overlay -->
+    <div class="absolute inset-0 opacity-[0.04]"
+      style="background-image: url('https://www.transparenttextures.com/patterns/noise.png');"></div>
+  </div>
+
+  <!-- Decorative gold circle -->
+  <div class="absolute right-[-120px] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-gold/10 z-0 hidden lg:block"></div>
+  <div class="absolute right-[-60px] top-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full border border-gold/20 z-0 hidden lg:block"></div>
+
+  <!-- Floating petals / decorative blobs -->
+  <div class="absolute top-24 left-10 w-3 h-3 rounded-full bg-gold/30 animate-pulse"></div>
+  <div class="absolute bottom-32 left-24 w-2 h-2 rounded-full bg-rose/40 animate-pulse delay-300"></div>
+  <div class="absolute top-40 right-1/3 w-2 h-2 rounded-full bg-gold/20 animate-pulse delay-700"></div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-16 grid md:grid-cols-2 gap-12 items-center py-32 md:py-0">
+
+    <!-- Left: Text -->
+    <div class="flex flex-col gap-6" style="animation: fadeSlideUp 1s ease forwards;">
+      <!-- Tag line -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-px bg-gold"></div>
+        <span class="font-body text-xs tracking-[0.4em] uppercase text-gold">Premium Skincare Experience</span>
+      </div>
+
+      <!-- Main heading -->
+      <h1 class="font-display text-5xl md:text-7xl text-cream leading-[1.1]">
+        Reveal Your <br/>
+        <span class="italic text-gold">Natural</span> <br/>
+        Glow
+      </h1>
+
+      <!-- Subtext -->
+      <p class="font-body text-sm md:text-base text-rose/80 max-w-md leading-relaxed tracking-wide">
+        At NIKKY'S SKIN-CARE-HUB., we craft personalized skincare journeys for every skin type. 
+        Luxury treatments, premium products, and a touch of elegance — all for you.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap gap-4 mt-2">
+        <a href="#booking"
+          class="font-body text-xs tracking-widest uppercase px-8 py-4 bg-gold text-deep font-medium hover:bg-rose hover:text-deep transition-all duration-300 shadow-lg shadow-gold/20">
+          Book a Session
+        </a>
+        <a href="#services"
+          class="font-body text-xs tracking-widest uppercase px-8 py-4 border border-cream/30 text-cream hover:border-gold hover:text-gold transition-all duration-300">
+          Our Services
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex gap-10 mt-6 pt-6 border-t border-white/10">
+        <div>
+          <p class="font-display text-3xl text-gold">500+</p>
+          <p class="font-body text-xs text-rose/60 tracking-widest uppercase mt-1">Happy Clients</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl text-gold">5★</p>
+          <p class="font-body text-xs text-rose/60 tracking-widest uppercase mt-1">Rated Service</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl text-gold">8+</p>
+          <p class="font-body text-xs text-rose/60 tracking-widest uppercase mt-1">Years Experience</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Image Card -->
+    <div class="relative flex justify-center items-center" style="animation: fadeSlideIn 1.2s ease forwards;">
+
+      <!-- Main image frame -->
+      <div class="relative w-72 md:w-96 h-[420px] md:h-[520px]">
+
+        <!-- Gold border frame offset -->
+        <div class="absolute -top-4 -right-4 w-full h-full border border-gold/40 z-0"></div>
+
+        <!-- Image -->
+        <div class="relative w-full h-full overflow-hidden z-10 bg-bark/30">
+          <img
+            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80"
+            alt="Skincare Treatment"
+            class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
+          />
+          <!-- Image overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/60 via-transparent to-transparent"></div>
+        </div>
+
+        <!-- Floating badge -->
+        <div class="absolute -left-6 bottom-12 z-20 bg-deep border border-gold/30 px-4 py-3 shadow-xl">
+          <p class="font-body text-xs text-gold tracking-widest uppercase">Trusted by</p>
+          <p class="font-display text-2xl text-cream mt-1">500+ Clients</p>
+        </div>
+
+        <!-- Small accent image -->
+        <div class="absolute -right-10 top-10 w-28 h-28 overflow-hidden border-2 border-gold/30 z-20 hidden md:block">
+          <img
+            src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=200&q=80"
+            alt="Beauty Product"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
+    <span class="font-body text-xs tracking-widest text-rose/50 uppercase">Scroll</span>
+    <div class="w-px h-8 bg-gradient-to-b from-gold/50 to-transparent"></div>
+  </div>
+
+</section>
+
+<!-- ===== SERVICES SECTION ===== -->
+<section id="services" class="relative py-24 md:py-36 bg-cream overflow-hidden">
+
+  <!-- Decorative background text -->
+  <div class="absolute top-10 left-1/2 -translate-x-1/2 font-display text-[120px] md:text-[200px] text-bark/5 whitespace-nowrap select-none pointer-events-none leading-none">
+    BEAUTY
+  </div>
+
+  <!-- Top decorative line -->
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-16">
+
+    <!-- Section Header -->
+    <div class="flex flex-col items-center text-center gap-4 mb-16">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-px bg-gold"></div>
+        <span class="font-body text-xs tracking-[0.4em] uppercase text-gold">What We Offer</span>
+        <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="font-display text-4xl md:text-6xl text-deep leading-tight">
+        Our <span class="italic text-bark">Signature</span> Services
+      </h2>
+      <p class="font-body text-sm text-bark/70 max-w-xl leading-relaxed tracking-wide">
+        Every treatment is carefully crafted to nourish, restore, and illuminate your skin. 
+        Book a session and experience the Nikky's difference.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Service Card 1 -->
+      <div class="group relative bg-white border border-rose/30 p-8 hover:border-gold/60 transition-all duration-500 hover:shadow-xl hover:shadow-gold/10 hover:-translate-y-1">
+        <!-- Top accent line -->
+        <div class="absolute top-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-500"></div>
+
+        <div class="w-14 h-14 rounded-full bg-rose/30 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors duration-300">
+          <i class="fas fa-spa text-bark text-xl group-hover:text-gold transition-colors duration-300"></i>
+        </div>
+
+        <h3 class="font-display text-2xl text-deep mb-3">Facial Treatment</h3>
+        <p class="font-body text-sm text-bark/70 leading-relaxed mb-6">
+          Deep cleansing, exfoliation and hydration therapy tailored to your skin type. 
+          Leave with a radiant, refreshed complexion.
+        </p>
+
+        <div class="flex items-center justify-between pt-4 border-t border-rose/20">
+          <span class="font-display text-xl text-gold">₦15,000</span>
+          <span class="font-body text-xs text-bark/50 tracking-widest uppercase">60 mins</span>
+        </div>
+
+        <a href="#booking" class="mt-5 inline-flex items-center gap-2 font-body text-xs tracking-widest uppercase text-bark hover:text-gold transition-colors duration-300">
+          Book Now <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Service Card 2 (Featured) -->
+      <div class="group relative bg-deep border border-gold/30 p-8 hover:border-gold transition-all duration-500 hover:shadow-xl hover:shadow-gold/20 hover:-translate-y-1">
+        <!-- Featured badge -->
+        <div class="absolute top-4 right-4 bg-gold px-3 py-1">
+          <span class="font-body text-[10px] tracking-widest uppercase text-deep">Popular</span>
+        </div>
+        <div class="absolute top-0 left-0 w-full h-0.5 bg-gold"></div>
+
+        <div class="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center mb-6 group-hover:bg-gold/30 transition-colors duration-300">
+          <i class="fas fa-star text-gold text-xl"></i>
+        </div>
+
+        <h3 class="font-display text-2xl text-cream mb-3">Glow Treatment</h3>
+        <p class="font-body text-sm text-rose/70 leading-relaxed mb-6">
+          Our signature brightening ritual combining vitamin C serums, gold mask therapy 
+          and LED light for an unmatched luminous glow.
+        </p>
+
+        <div class="flex items-center justify-between pt-4 border-t border-gold/20">
+          <span class="font-display text-xl text-gold">₦25,000</span>
+          <span class="font-body text-xs text-rose/50 tracking-widest uppercase">90 mins</span>
+        </div>
+
+        <a href="#booking" class="mt-5 inline-flex items-center gap-2 font-body text-xs tracking-widest uppercase text-gold hover:text-rose transition-colors duration-300">
+          Book Now <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Service Card 3 -->
+      <div class="group relative bg-white border border-rose/30 p-8 hover:border-gold/60 transition-all duration-500 hover:shadow-xl hover:shadow-gold/10 hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-500"></div>
+
+        <div class="w-14 h-14 rounded-full bg-rose/30 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors duration-300">
+          <i class="fas fa-leaf text-bark text-xl group-hover:text-gold transition-colors duration-300"></i>
+        </div>
+
+        <h3 class="font-display text-2xl text-deep mb-3">Acne Therapy</h3>
+        <p class="font-body text-sm text-bark/70 leading-relaxed mb-6">
+          Targeted treatment for acne-prone skin using natural extracts and medical-grade 
+          products to calm, heal and prevent breakouts.
+        </p>
+
+        <div class="flex items-center justify-between pt-4 border-t border-rose/20">
+          <span class="font-display text-xl text-gold">₦18,000</span>
+          <span class="font-body text-xs text-bark/50 tracking-widest uppercase">75 mins</span>
+        </div>
+
+        <a href="#booking" class="mt-5 inline-flex items-center gap-2 font-body text-xs tracking-widest uppercase text-bark hover:text-gold transition-colors duration-300">
+          Book Now <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Service Card 4 -->
+      <div class="group relative bg-white border border-rose/30 p-8 hover:border-gold/60 transition-all duration-500 hover:shadow-xl hover:shadow-gold/10 hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-500"></div>
+
+        <div class="w-14 h-14 rounded-full bg-rose/30 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors duration-300">
+          <i class="fas fa-tint text-bark text-xl group-hover:text-gold transition-colors duration-300"></i>
+        </div>
+
+        <h3 class="font-display text-2xl text-deep mb-3">Deep Hydration</h3>
+        <p class="font-body text-sm text-bark/70 leading-relaxed mb-6">
+          Intense moisture therapy with hyaluronic acid and botanical oils to restore 
+          suppleness to dry and dehydrated skin.
+        </p>
+
+        <div class="flex items-center justify-between pt-4 border-t border-rose/20">
+          <span class="font-display text-xl text-gold">₦12,000</span>
+          <span class="font-body text-xs text-bark/50 tracking-widest uppercase">45 mins</span>
+        </div>
+
+        <a href="#booking" class="mt-5 inline-flex items-center gap-2 font-body text-xs tracking-widest uppercase text-bark hover:text-gold transition-colors duration-300">
+          Book Now <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Service Card 5 -->
+      <div class="group relative bg-white border border-rose/30 p-8 hover:border-gold/60 transition-all duration-500 hover:shadow-xl hover:shadow-gold/10 hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-500"></div>
+
+        <div class="w-14 h-14 rounded-full bg-rose/30 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors duration-300">
+          <i class="fas fa-magic text-bark text-xl group-hover:text-gold transition-colors duration-300"></i>
+        </div>
+
+        <h3 class="font-display text-2xl text-deep mb-3">Anti-Aging Ritual</h3>
+        <p class="font-body text-sm text-bark/70 leading-relaxed mb-6">
+          Premium collagen-boosting treatment with retinol serums and facial massage 
+          techniques that visibly firm and lift the skin.
+        </p>
+
+        <div class="flex items-center justify-between pt-4 border-t border-rose/20">
+          <span class="font-display text-xl text-gold">₦30,000</span>
+          <span class="font-body text-xs text-bark/50 tracking-widest uppercase">90 mins</span>
+        </div>
+
+        <a href="#booking" class="mt-5 inline-flex items-center gap-2 font-body text-xs tracking-widest uppercase text-bark hover:text-gold transition-colors duration-300">
+          Book Now <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Service Card 6 — Consultation -->
+      <div class="group relative bg-bark/10 border border-bark/20 p-8 hover:border-gold/60 transition-all duration-500 hover:shadow-xl hover:shadow-gold/10 hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-500"></div>
+
+        <div class="w-14 h-14 rounded-full bg-rose/30 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors duration-300">
+          <i class="fas fa-comments text-bark text-xl group-hover:text-gold transition-colors duration-300"></i>
+        </div>
+
+        <h3 class="font-display text-2xl text-deep mb-3">Skin Consultation</h3>
+        <p class="font-body text-sm text-bark/70 leading-relaxed mb-6">
+          Not sure where to start? Book a one-on-one consultation and get a personalized 
+          skincare plan crafted just for your unique skin.
+        </p>
+
+        <div class="flex items-center justify-between pt-4 border-t border-rose/20">
+          <span class="font-display text-xl text-gold">₦5,000</span>
+          <span class="font-body text-xs text-bark/50 tracking-widest uppercase">30 mins</span>
+        </div>
+
+        <a href="#booking" class="mt-5 inline-flex items-center gap-2 font-body text-xs tracking-widest uppercase text-bark hover:text-gold transition-colors duration-300">
+          Book Now <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-16 flex flex-col items-center gap-4 text-center">
+      <p class="font-body text-sm text-bark/60 tracking-wide">Ready to begin your glow journey?</p>
+      <a href="#booking"
+        class="font-body text-xs tracking-widest uppercase px-10 py-4 bg-deep text-cream hover:bg-gold hover:text-deep transition-all duration-300 shadow-lg">
+        Book Your Session Today
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Bottom decorative line -->
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+</section>
+
+<!-- ===== PRODUCTS SECTION ===== -->
+<section id="products" class="relative py-24 md:py-36 bg-deep overflow-hidden">
+
+  <!-- Decorative background -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_#C9A84C12_0%,_transparent_50%)]"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_#E8C4B810_0%,_transparent_50%)]"></div>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+  <!-- Big decorative background text -->
+  <div class="absolute bottom-10 right-0 font-display text-[120px] md:text-[200px] text-cream/[0.03] whitespace-nowrap select-none pointer-events-none leading-none">
+    GLOW
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-16">
+
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-px bg-gold"></div>
+          <span class="font-body text-xs tracking-[0.4em] uppercase text-gold">Shop Our Range</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-6xl text-cream leading-tight">
+          Premium <span class="italic text-gold">Products</span>
+        </h2>
+        <p class="font-body text-sm text-rose/70 max-w-md leading-relaxed tracking-wide">
+          Carefully curated skincare formulas for every skin type. 
+          Natural ingredients, luxury results.
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap gap-2" id="filter-tabs">
+        <button onclick="filterProducts('all')" data-filter="all"
+          class="filter-btn active-filter font-body text-xs tracking-widest uppercase px-5 py-2 border border-gold bg-gold text-deep transition-all duration-300">
+          All
+        </button>
+        <button onclick="filterProducts('face')" data-filter="face"
+          class="filter-btn font-body text-xs tracking-widest uppercase px-5 py-2 border border-cream/20 text-cream/60 hover:border-gold hover:text-gold transition-all duration-300">
+          Face
+        </button>
+        <button onclick="filterProducts('body')" data-filter="body"
+          class="filter-btn font-body text-xs tracking-widest uppercase px-5 py-2 border border-cream/20 text-cream/60 hover:border-gold hover:text-gold transition-all duration-300">
+          Body
+        </button>
+        <button onclick="filterProducts('serum')" data-filter="serum"
+          class="filter-btn font-body text-xs tracking-widest uppercase px-5 py-2 border border-cream/20 text-cream/60 hover:border-gold hover:text-gold transition-all duration-300">
+          Serums
+        </button>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="products-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card group relative bg-bark/20 border border-white/5 hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10"
+        data-category="face">
+        <div class="relative overflow-hidden h-64">
+          <img src="1.webp"
+            alt="Brightening Face Cream"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-transparent to-transparent"></div>
+
+          <!-- Wishlist btn -->
+          <button class="absolute top-3 right-3 w-8 h-8 bg-deep/60 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:border-gold">
+            <i class="fas fa-heart text-rose text-xs"></i>
+          </button>
+
+          <!-- Category tag -->
+          <div class="absolute top-3 left-3 bg-gold/90 px-2 py-1">
+            <span class="font-body text-[9px] tracking-widest uppercase text-deep">Face</span>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <h4 class="font-display text-xl text-cream mb-1">Brightening Face Cream</h4>
+          <p class="font-body text-xs text-rose/60 leading-relaxed mb-4">
+            Vitamin C enriched formula for an even, radiant complexion.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-lg text-gold">₦8,500</span>
+            <a href="#booking"
+              class="font-body text-[10px] tracking-widest uppercase px-4 py-2 border border-gold/40 text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+              Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card group relative bg-bark/20 border border-white/5 hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10"
+        data-category="serum">
+        <div class="relative overflow-hidden h-64">
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80"
+            alt="Glow Serum"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-transparent to-transparent"></div>
+
+          <button class="absolute top-3 right-3 w-8 h-8 bg-deep/60 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:border-gold">
+            <i class="fas fa-heart text-rose text-xs"></i>
+          </button>
+
+          <!-- Bestseller badge -->
+          <div class="absolute top-3 left-3 bg-rose/90 px-2 py-1">
+            <span class="font-body text-[9px] tracking-widest uppercase text-deep">Bestseller</span>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <h4 class="font-display text-xl text-cream mb-1">24K Glow Serum</h4>
+          <p class="font-body text-xs text-rose/60 leading-relaxed mb-4">
+            Gold-infused serum that targets dark spots and boosts luminosity.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-lg text-gold">₦12,000</span>
+            <a href="#booking"
+              class="font-body text-[10px] tracking-widest uppercase px-4 py-2 border border-gold/40 text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+              Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card group relative bg-bark/20 border border-white/5 hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10"
+        data-category="body">
+        <div class="relative overflow-hidden h-64">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&q=80"
+            alt="Body Butter"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-transparent to-transparent"></div>
+
+          <button class="absolute top-3 right-3 w-8 h-8 bg-deep/60 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:border-gold">
+            <i class="fas fa-heart text-rose text-xs"></i>
+          </button>
+
+          <div class="absolute top-3 left-3 bg-gold/90 px-2 py-1">
+            <span class="font-body text-[9px] tracking-widest uppercase text-deep">Body</span>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <h4 class="font-display text-xl text-cream mb-1">Shea Body Butter</h4>
+          <p class="font-body text-xs text-rose/60 leading-relaxed mb-4">
+            Rich African shea butter blend for deeply moisturized, silky skin.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-lg text-gold">₦6,500</span>
+            <a href="#booking"
+              class="font-body text-[10px] tracking-widest uppercase px-4 py-2 border border-gold/40 text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+              Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card group relative bg-bark/20 border border-white/5 hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10"
+        data-category="face">
+        <div class="relative overflow-hidden h-64">
+          <img src="https://images.unsplash.com/photo-1601049676869-702ea24cfd58?w=400&q=80"
+            alt="Clay Mask"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-transparent to-transparent"></div>
+
+          <button class="absolute top-3 right-3 w-8 h-8 bg-deep/60 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:border-gold">
+            <i class="fas fa-heart text-rose text-xs"></i>
+          </button>
+
+          <div class="absolute top-3 left-3 bg-gold/90 px-2 py-1">
+            <span class="font-body text-[9px] tracking-widest uppercase text-deep">Face</span>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <h4 class="font-display text-xl text-cream mb-1">Purifying Clay Mask</h4>
+          <p class="font-body text-xs text-rose/60 leading-relaxed mb-4">
+            Deep pore cleansing kaolin clay mask with tea tree and aloe vera.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-lg text-gold">₦7,000</span>
+            <a href="#booking"
+              class="font-body text-[10px] tracking-widest uppercase px-4 py-2 border border-gold/40 text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+              Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card group relative bg-bark/20 border border-white/5 hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10"
+        data-category="serum">
+        <div class="relative overflow-hidden h-64">
+          <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80"
+            alt="Retinol Serum"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-transparent to-transparent"></div>
+
+          <button class="absolute top-3 right-3 w-8 h-8 bg-deep/60 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:border-gold">
+            <i class="fas fa-heart text-rose text-xs"></i>
+          </button>
+
+          <div class="absolute top-3 left-3 bg-gold/90 px-2 py-1">
+            <span class="font-body text-[9px] tracking-widest uppercase text-deep">Serum</span>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <h4 class="font-display text-xl text-cream mb-1">Retinol Night Serum</h4>
+          <p class="font-body text-xs text-rose/60 leading-relaxed mb-4">
+            Overnight renewal serum that reduces fine lines and evens skin tone.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-lg text-gold">₦14,500</span>
+            <a href="#booking"
+              class="font-body text-[10px] tracking-widest uppercase px-4 py-2 border border-gold/40 text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+              Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card group relative bg-bark/20 border border-white/5 hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10"
+        data-category="body">
+        <div class="relative overflow-hidden h-64">
+          <img src="https://images.unsplash.com/photo-1615397349754-cfa2066a298e?w=400&q=80"
+            alt="Body Scrub"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-transparent to-transparent"></div>
+
+          <button class="absolute top-3 right-3 w-8 h-8 bg-deep/60 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:border-gold">
+            <i class="fas fa-heart text-rose text-xs"></i>
+          </button>
+
+          <div class="absolute top-3 left-3 bg-gold/90 px-2 py-1">
+            <span class="font-body text-[9px] tracking-widest uppercase text-deep">Body</span>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <h4 class="font-display text-xl text-cream mb-1">Sugar Glow Scrub</h4>
+          <p class="font-body text-xs text-rose/60 leading-relaxed mb-4">
+            Exfoliating sugar scrub with coconut oil for smooth, glowing skin.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-lg text-gold">₦5,500</span>
+            <a href="#booking"
+              class="font-body text-[10px] tracking-widest uppercase px-4 py-2 border border-gold/40 text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+              Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card group relative bg-bark/20 border border-white/5 hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10"
+        data-category="face">
+        <div class="relative overflow-hidden h-64">
+          <img src="2.webp"
+            alt="Sunscreen"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-transparent to-transparent"></div>
+
+          <button class="absolute top-3 right-3 w-8 h-8 bg-deep/60 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:border-gold">
+            <i class="fas fa-heart text-rose text-xs"></i>
+          </button>
+
+          <div class="absolute top-3 left-3 bg-gold/90 px-2 py-1">
+            <span class="font-body text-[9px] tracking-widest uppercase text-deep">Face</span>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <h4 class="font-display text-xl text-cream mb-1">SPF 50 Sunscreen</h4>
+          <p class="font-body text-xs text-rose/60 leading-relaxed mb-4">
+            Lightweight, non-greasy sun protection that doubles as a moisturizer.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-lg text-gold">₦9,000</span>
+            <a href="#booking"
+              class="font-body text-[10px] tracking-widest uppercase px-4 py-2 border border-gold/40 text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+              Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card group relative bg-bark/20 border border-white/5 hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10"
+        data-category="serum">
+        <div class="relative overflow-hidden h-64">
+          <img src="3.jpg"
+            alt="Hyaluronic Serum"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-transparent to-transparent"></div>
+
+          <button class="absolute top-3 right-3 w-8 h-8 bg-deep/60 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:border-gold">
+            <i class="fas fa-heart text-rose text-xs"></i>
+          </button>
+
+          <div class="absolute top-3 left-3 bg-rose/90 px-2 py-1">
+            <span class="font-body text-[9px] tracking-widest uppercase text-deep">New</span>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <h4 class="font-display text-xl text-cream mb-1">Hyaluronic Acid Serum</h4>
+          <p class="font-body text-xs text-rose/60 leading-relaxed mb-4">
+            Intense plumping serum with multi-weight hyaluronic acid for all skin types.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-lg text-gold">₦11,000</span>
+            <a href="#booking"
+              class="font-body text-[10px] tracking-widest uppercase px-4 py-2 border border-gold/40 text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+              Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-16 flex flex-col items-center gap-4 text-center">
+      <p class="font-body text-sm text-rose/50 tracking-wide">All products are 100% authentic & dermatologist tested</p>
+      <a href="#booking"
+        class="font-body text-xs tracking-widest uppercase px-10 py-4 border border-gold text-gold hover:bg-gold hover:text-deep transition-all duration-300">
+        Order via Booking
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Bottom line -->
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+</section>
+
+
+<!-- ===== BOOKING SECTION ===== -->
+<section id="booking" class="relative py-24 md:py-36 bg-cream overflow-hidden">
+
+  <!-- Decorative elements -->
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_#C9A84C08_0%,_transparent_60%)]"></div>
+
+  <!-- Big decorative background text -->
+  <div class="absolute top-10 left-1/2 -translate-x-1/2 font-display text-[120px] md:text-[200px] text-bark/[0.04] whitespace-nowrap select-none pointer-events-none leading-none">
+    BOOK
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-16">
+
+    <!-- Section Header -->
+    <div class="flex flex-col items-center text-center gap-4 mb-16">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-px bg-gold"></div>
+        <span class="font-body text-xs tracking-[0.4em] uppercase text-gold">Reserve Your Spot</span>
+        <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="font-display text-4xl md:text-6xl text-deep leading-tight">
+        Book a <span class="italic text-bark">Session</span>
+      </h2>
+      <p class="font-body text-sm text-bark/70 max-w-xl leading-relaxed tracking-wide">
+        Choose your preferred service, pick a date and time, and we'll confirm your appointment. 
+        It's that simple — your glow journey starts here.
+      </p>
+    </div>
+
+    <!-- Booking Layout -->
+    <div class="grid md:grid-cols-5 gap-10 items-start">
+
+      <!-- Left: Info Panel -->
+      <div class="md:col-span-2 flex flex-col gap-8">
+
+        <!-- Why Book -->
+        <div class="bg-deep p-8 border border-gold/20">
+          <h3 class="font-display text-2xl text-cream mb-6">Why Book With Us</h3>
+
+          <div class="flex flex-col gap-5">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-check text-gold text-xs"></i>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream tracking-wide">Certified Skincare Expert</p>
+                <p class="font-body text-xs text-rose/50 mt-1 leading-relaxed">Over 8 years of professional skincare experience.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-gold text-xs"></i>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream tracking-wide">Flexible Scheduling</p>
+                <p class="font-body text-xs text-rose/50 mt-1 leading-relaxed">Morning, afternoon & evening slots available.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-shield-alt text-gold text-xs"></i>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream tracking-wide">Safe & Hygienic</p>
+                <p class="font-body text-xs text-rose/50 mt-1 leading-relaxed">Strict hygiene standards and premium grade products used.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-star text-gold text-xs"></i>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream tracking-wide">5-Star Experience</p>
+                <p class="font-body text-xs text-rose/50 mt-1 leading-relaxed">Rated 5 stars by 500+ satisfied clients across Nigeria.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact quick links -->
+        <div class="flex flex-col gap-3">
+          <p class="font-body text-xs tracking-widest uppercase text-bark/50">Prefer to reach us directly?</p>
+          <a href="https://wa.me/2347076229524" target="_blank"
+            class="flex items-center gap-3 px-5 py-3 bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/20 transition-all duration-300">
+            <i class="fab fa-whatsapp text-lg"></i>
+            <span class="font-body text-sm tracking-wide">Chat on WhatsApp</span>
+          </a>
+          <a href="tel:+23480000660"
+            class="flex items-center gap-3 px-5 py-3 bg-gold/10 border border-gold/30 text-gold hover:bg-gold/20 transition-all duration-300">
+            <i class="fas fa-phone text-sm"></i>
+            <span class="font-body text-sm tracking-wide">Call Us Directly</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right: Booking Form -->
+      <div class="md:col-span-3 bg-white border border-rose/30 p-8 md:p-10 shadow-xl shadow-bark/5 relative">
+
+        <!-- Gold top accent -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold via-rose to-gold"></div>
+
+        <h3 class="font-display text-2xl text-deep mb-8">Fill Your Details</h3>
+
+        <form id="booking-form" class="flex flex-col gap-5" onsubmit="submitBooking(event)">
+
+          <!-- Row 1: Name & Phone -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="flex flex-col gap-2">
+              <label class="font-body text-xs tracking-widest uppercase text-bark/60">Full Name *</label>
+              <input type="text" id="b-name" placeholder="e.g. Amaka Johnson" required
+                class="font-body text-sm px-4 py-3 border border-rose/30 bg-cream/50 text-deep placeholder-bark/30 focus:outline-none focus:border-gold transition-colors duration-300"/>
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="font-body text-xs tracking-widest uppercase text-bark/60">Phone Number *</label>
+              <input type="tel" id="b-phone" placeholder="e.g. 08012345678" required
+                class="font-body text-sm px-4 py-3 border border-rose/30 bg-cream/50 text-deep placeholder-bark/30 focus:outline-none focus:border-gold transition-colors duration-300"/>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="flex flex-col gap-2">
+            <label class="font-body text-xs tracking-widest uppercase text-bark/60">Email Address *</label>
+            <input type="email" id="b-email" placeholder="e.g. amaka@email.com" required
+              class="font-body text-sm px-4 py-3 border border-rose/30 bg-cream/50 text-deep placeholder-bark/30 focus:outline-none focus:border-gold transition-colors duration-300"/>
+          </div>
+
+          <!-- Service -->
+          <div class="flex flex-col gap-2">
+            <label class="font-body text-xs tracking-widest uppercase text-bark/60">Select Service *</label>
+            <select id="b-service" required
+              class="font-body text-sm px-4 py-3 border border-rose/30 bg-cream/50 text-deep focus:outline-none focus:border-gold transition-colors duration-300 appearance-none cursor-pointer">
+              <option value="" disabled selected>Choose a service...</option>
+              <option value="facial">Facial Treatment — ₦15,000 (60 mins)</option>
+              <option value="glow">Glow Treatment — ₦25,000 (90 mins)</option>
+              <option value="acne">Acne Therapy — ₦18,000 (75 mins)</option>
+              <option value="hydration">Deep Hydration — ₦12,000 (45 mins)</option>
+              <option value="antiaging">Anti-Aging Ritual — ₦30,000 (90 mins)</option>
+              <option value="consultation">Skin Consultation — ₦5,000 (30 mins)</option>
+            </select>
+          </div>
+
+          <!-- Row 2: Date & Time -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="flex flex-col gap-2">
+              <label class="font-body text-xs tracking-widest uppercase text-bark/60">Preferred Date *</label>
+              <input type="date" id="b-date" required
+                class="font-body text-sm px-4 py-3 border border-rose/30 bg-cream/50 text-deep focus:outline-none focus:border-gold transition-colors duration-300"/>
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="font-body text-xs tracking-widest uppercase text-bark/60">Preferred Time *</label>
+              <select id="b-time" required
+                class="font-body text-sm px-4 py-3 border border-rose/30 bg-cream/50 text-deep focus:outline-none focus:border-gold transition-colors duration-300 appearance-none cursor-pointer">
+                <option value="" disabled selected>Choose a time...</option>
+                <option>9:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>1:00 PM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
+                <option>4:00 PM</option>
+                <option>5:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Skin Type -->
+          <div class="flex flex-col gap-2">
+            <label class="font-body text-xs tracking-widest uppercase text-bark/60">Your Skin Type</label>
+            <div class="flex flex-wrap gap-3" id="skin-type-group">
+              <button type="button" onclick="selectSkin(this)" data-skin="Normal"
+                class="skin-btn font-body text-xs tracking-widest uppercase px-4 py-2 border border-rose/30 text-bark/60 hover:border-gold hover:text-gold transition-all duration-300">
+                Normal
+              </button>
+              <button type="button" onclick="selectSkin(this)" data-skin="Oily"
+                class="skin-btn font-body text-xs tracking-widest uppercase px-4 py-2 border border-rose/30 text-bark/60 hover:border-gold hover:text-gold transition-all duration-300">
+                Oily
+              </button>
+              <button type="button" onclick="selectSkin(this)" data-skin="Dry"
+                class="skin-btn font-body text-xs tracking-widest uppercase px-4 py-2 border border-rose/30 text-bark/60 hover:border-gold hover:text-gold transition-all duration-300">
+                Dry
+              </button>
+              <button type="button" onclick="selectSkin(this)" data-skin="Combination"
+                class="skin-btn font-body text-xs tracking-widest uppercase px-4 py-2 border border-rose/30 text-bark/60 hover:border-gold hover:text-gold transition-all duration-300">
+                Combination
+              </button>
+              <button type="button" onclick="selectSkin(this)" data-skin="Sensitive"
+                class="skin-btn font-body text-xs tracking-widest uppercase px-4 py-2 border border-rose/30 text-bark/60 hover:border-gold hover:text-gold transition-all duration-300">
+                Sensitive
+              </button>
+            </div>
+            <input type="hidden" id="b-skin" value=""/>
+          </div>
+
+          <!-- Notes -->
+          <div class="flex flex-col gap-2">
+            <label class="font-body text-xs tracking-widest uppercase text-bark/60">Additional Notes</label>
+            <textarea id="b-notes" rows="3" placeholder="Any skin concerns, allergies or special requests..."
+              class="font-body text-sm px-4 py-3 border border-rose/30 bg-cream/50 text-deep placeholder-bark/30 focus:outline-none focus:border-gold transition-colors duration-300 resize-none"></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit"
+            class="w-full font-body text-xs tracking-widest uppercase py-4 bg-deep text-cream hover:bg-gold hover:text-deep transition-all duration-300 shadow-lg mt-2">
+            <span id="btn-text">Confirm Booking</span>
+          </button>
+
+        </form>
+
+        <!-- Success Message (hidden by default) -->
+        <div id="booking-success" class="hidden flex-col items-center text-center gap-5 py-10">
+          <div class="w-16 h-16 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center">
+            <i class="fas fa-check text-gold text-2xl"></i>
+          </div>
+          <h3 class="font-display text-3xl text-deep">Booking Received!</h3>
+          <p class="font-body text-sm text-bark/70 max-w-sm leading-relaxed">
+            Thank you! Your appointment request has been submitted. 
+            We'll confirm via WhatsApp or Email within 24 hours.
+          </p>
+          <button onclick="resetBooking()"
+            class="font-body text-xs tracking-widest uppercase px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-deep transition-all duration-300 mt-2">
+            Book Another Session
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom line -->
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+</section>
+
+
+<!-- ===== TESTIMONIALS SECTION ===== -->
+<section id="testimonials" class="relative py-24 md:py-36 bg-deep overflow-hidden">
+
+  <!-- Decorative elements -->
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#C9A84C10_0%,_transparent_55%)]"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_#E8C4B808_0%,_transparent_55%)]"></div>
+
+  <!-- Big decorative background text -->
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 font-display text-[100px] md:text-[180px] text-cream/[0.03] whitespace-nowrap select-none pointer-events-none leading-none">
+    REVIEWS
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-16">
+
+    <!-- Section Header -->
+    <div class="flex flex-col items-center text-center gap-4 mb-16">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-px bg-gold"></div>
+        <span class="font-body text-xs tracking-[0.4em] uppercase text-gold">Client Stories</span>
+        <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="font-display text-4xl md:text-6xl text-cream leading-tight">
+        What Our <span class="italic text-gold">Clients</span> Say
+      </h2>
+      <p class="font-body text-sm text-rose/70 max-w-xl leading-relaxed tracking-wide">
+        Real results. Real people. Every skin journey at NIKKY'S SKIN-CARE-HUB. 
+        is unique — here are a few stories from our happy clients.
+      </p>
+
+      <!-- Overall Rating -->
+      <div class="flex items-center gap-4 mt-2 px-8 py-4 border border-gold/20 bg-white/5">
+        <div class="flex flex-col items-center">
+          <span class="font-display text-5xl text-gold">5.0</span>
+          <div class="flex gap-1 mt-1">
+            <i class="fas fa-star text-gold text-xs"></i>
+            <i class="fas fa-star text-gold text-xs"></i>
+            <i class="fas fa-star text-gold text-xs"></i>
+            <i class="fas fa-star text-gold text-xs"></i>
+            <i class="fas fa-star text-gold text-xs"></i>
+          </div>
+          <span class="font-body text-xs text-rose/50 tracking-widest uppercase mt-1">Overall Rating</span>
+        </div>
+        <div class="w-px h-16 bg-gold/20"></div>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3">
+            <span class="font-body text-xs text-rose/50 w-4">5</span>
+            <div class="w-32 h-1.5 bg-white/10 rounded-full overflow-hidden">
+              <div class="h-full bg-gold rounded-full" style="width: 92%"></div>
+            </div>
+            <span class="font-body text-xs text-rose/50">92%</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="font-body text-xs text-rose/50 w-4">4</span>
+            <div class="w-32 h-1.5 bg-white/10 rounded-full overflow-hidden">
+              <div class="h-full bg-gold/60 rounded-full" style="width: 6%"></div>
+            </div>
+            <span class="font-body text-xs text-rose/50">6%</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="font-body text-xs text-rose/50 w-4">3</span>
+            <div class="w-32 h-1.5 bg-white/10 rounded-full overflow-hidden">
+              <div class="h-full bg-gold/30 rounded-full" style="width: 2%"></div>
+            </div>
+            <span class="font-body text-xs text-rose/50">2%</span>
+          </div>
+        </div>
+        <div class="w-px h-16 bg-gold/20 hidden sm:block"></div>
+        <div class="hidden sm:flex flex-col items-center">
+          <span class="font-display text-3xl text-cream">500+</span>
+          <span class="font-body text-xs text-rose/50 tracking-widest uppercase mt-1">Reviews</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Slider -->
+    <div class="relative overflow-hidden" id="testimonial-slider">
+
+      <!-- Slides Wrapper -->
+      <div class="flex transition-transform duration-700 ease-in-out" id="slides-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="min-w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Card 1 -->
+          <div class="relative bg-white/5 border border-white/10 p-7 hover:border-gold/30 transition-all duration-500 group">
+            <div class="absolute top-5 right-6 font-display text-6xl text-gold/10 leading-none select-none">"</div>
+            <div class="flex gap-1 mb-4">
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+            </div>
+            <p class="font-body text-sm text-rose/80 leading-relaxed mb-6 italic">
+              "I came in with dull, tired skin and left absolutely glowing. The Glow Treatment 
+              is hands down the best skincare experience I've ever had. My skin has never 
+              looked this radiant!"
+            </p>
+            <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+              <div class="w-10 h-10 rounded-full bg-gold/30 flex items-center justify-center">
+                <span class="font-display text-sm text-gold">A</span>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream">Adaeze Okonkwo</p>
+                <p class="font-body text-xs text-rose/40 tracking-wide">Lagos, Nigeria</p>
+              </div>
+              <div class="ml-auto">
+                <span class="font-body text-[10px] tracking-widest uppercase text-gold/60 border border-gold/20 px-2 py-1">Glow Treatment</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 (Featured) -->
+          <div class="relative bg-gold/10 border border-gold/30 p-7 hover:border-gold/60 transition-all duration-500 group">
+            <div class="absolute top-5 right-6 font-display text-6xl text-gold/20 leading-none select-none">"</div>
+            <div class="flex gap-1 mb-4">
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+            </div>
+            <p class="font-body text-sm text-rose/90 leading-relaxed mb-6 italic">
+              "NIKKY'S SKIN-CARE-HUB. completely transformed my skin. I struggled with 
+              acne for years and after just 3 sessions of Acne Therapy, my skin is 
+              clearer than it's been in a decade. I'm forever grateful!"
+            </p>
+            <div class="flex items-center gap-3 pt-4 border-t border-gold/20">
+              <div class="w-10 h-10 rounded-full bg-gold/40 flex items-center justify-center">
+                <span class="font-display text-sm text-gold">C</span>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream">Chisom Eze</p>
+                <p class="font-body text-xs text-rose/40 tracking-wide">Abuja, Nigeria</p>
+              </div>
+              <div class="ml-auto">
+                <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Acne Therapy</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="relative bg-white/5 border border-white/10 p-7 hover:border-gold/30 transition-all duration-500 group">
+            <div class="absolute top-5 right-6 font-display text-6xl text-gold/10 leading-none select-none">"</div>
+            <div class="flex gap-1 mb-4">
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+            </div>
+            <p class="font-body text-sm text-rose/80 leading-relaxed mb-6 italic">
+              "The Anti-Aging Ritual is pure luxury. My skin feels firmer, smoother 
+              and years younger. The attention to detail and care is exceptional. 
+              Worth every kobo and more!"
+            </p>
+            <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+              <div class="w-10 h-10 rounded-full bg-gold/30 flex items-center justify-center">
+                <span class="font-display text-sm text-gold">N</span>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream">Ngozi Adeleke</p>
+                <p class="font-body text-xs text-rose/40 tracking-wide">Port Harcourt, Nigeria</p>
+              </div>
+              <div class="ml-auto">
+                <span class="font-body text-[10px] tracking-widest uppercase text-gold/60 border border-gold/20 px-2 py-1">Anti-Aging</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="min-w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Card 4 -->
+          <div class="relative bg-white/5 border border-white/10 p-7 hover:border-gold/30 transition-all duration-500">
+            <div class="absolute top-5 right-6 font-display text-6xl text-gold/10 leading-none select-none">"</div>
+            <div class="flex gap-1 mb-4">
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+            </div>
+            <p class="font-body text-sm text-rose/80 leading-relaxed mb-6 italic">
+              "Booked the Deep Hydration treatment and my skin has never felt 
+              so soft and supple. The products used are top notch and the 
+              ambiance is just incredible. I'm a loyal client for life!"
+            </p>
+            <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+              <div class="w-10 h-10 rounded-full bg-gold/30 flex items-center justify-center">
+                <span class="font-display text-sm text-gold">F</span>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream">Fatima Bello</p>
+                <p class="font-body text-xs text-rose/40 tracking-wide">Kano, Nigeria</p>
+              </div>
+              <div class="ml-auto">
+                <span class="font-body text-[10px] tracking-widest uppercase text-gold/60 border border-gold/20 px-2 py-1">Deep Hydration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 (Featured) -->
+          <div class="relative bg-gold/10 border border-gold/30 p-7 hover:border-gold/60 transition-all duration-500">
+            <div class="absolute top-5 right-6 font-display text-6xl text-gold/20 leading-none select-none">"</div>
+            <div class="flex gap-1 mb-4">
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+            </div>
+            <p class="font-body text-sm text-rose/90 leading-relaxed mb-6 italic">
+              "I started with the Skin Consultation and it was the best decision 
+              I ever made. Got a personalized routine and saw visible results 
+              in just 2 weeks. Nikky's Skin-care-hub is truly exceptional!"
+            </p>
+            <div class="flex items-center gap-3 pt-4 border-t border-gold/20">
+              <div class="w-10 h-10 rounded-full bg-gold/40 flex items-center justify-center">
+                <span class="font-display text-sm text-gold">T</span>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream">Temi Lawson</p>
+                <p class="font-body text-xs text-rose/40 tracking-wide">Ibadan, Nigeria</p>
+              </div>
+              <div class="ml-auto">
+                <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Consultation</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="relative bg-white/5 border border-white/10 p-7 hover:border-gold/30 transition-all duration-500">
+            <div class="absolute top-5 right-6 font-display text-6xl text-gold/10 leading-none select-none">"</div>
+            <div class="flex gap-1 mb-4">
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+              <i class="fas fa-star text-gold text-xs"></i>
+            </div>
+            <p class="font-body text-sm text-rose/80 leading-relaxed mb-6 italic">
+              "The Facial Treatment was absolutely divine. My skin felt like 
+              silk afterwards. The therapist was so knowledgeable and attentive. 
+              I now come every month without fail!"
+            </p>
+            <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+              <div class="w-10 h-10 rounded-full bg-gold/30 flex items-center justify-center">
+                <span class="font-display text-sm text-gold">B</span>
+              </div>
+              <div>
+                <p class="font-body text-sm text-cream">Blessing Obi</p>
+                <p class="font-body text-xs text-rose/40 tracking-wide">Enugu, Nigeria</p>
+              </div>
+              <div class="ml-auto">
+                <span class="font-body text-[10px] tracking-widest uppercase text-gold/60 border border-gold/20 px-2 py-1">Facial</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Slider Controls -->
+      <div class="flex items-center justify-center gap-6 mt-10">
+        <button onclick="prevSlide()"
+          class="w-12 h-12 border border-gold/30 text-gold hover:bg-gold hover:text-deep transition-all duration-300 flex items-center justify-center">
+          <i class="fas fa-arrow-left text-sm"></i>
+        </button>
+
+        <!-- Dots -->
+        <div class="flex gap-2" id="slider-dots">
+          <button onclick="goToSlide(0)" class="dot w-6 h-0.5 bg-gold transition-all duration-300"></button>
+          <button onclick="goToSlide(1)" class="dot w-3 h-0.5 bg-white/20 transition-all duration-300"></button>
+        </div>
+
+        <button onclick="nextSlide()"
+          class="w-12 h-12 border border-gold/30 text-gold hover:bg-gold hover:text-deep transition-all duration-300 flex items-center justify-center">
+          <i class="fas fa-arrow-right text-sm"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-16 flex flex-col items-center gap-4 text-center">
+      <p class="font-body text-sm text-rose/50 tracking-wide">Join 500+ clients who trust NIKKY'S SKIN-CARE-HUB.</p>
+      <a href="#booking"
+        class="font-body text-xs tracking-widest uppercase px-10 py-4 bg-gold text-deep hover:bg-rose hover:text-deep transition-all duration-300 shadow-lg shadow-gold/20">
+        Start Your Glow Journey
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Bottom line -->
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+</section>
+
+<!-- ===== GALLERY SECTION ===== -->
+<section id="gallery" class="relative py-24 md:py-36 bg-cream overflow-hidden">
+
+  <!-- Decorative elements -->
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_#C9A84C06_0%,_transparent_60%)]"></div>
+
+  <!-- Big decorative background text -->
+  <div class="absolute top-10 right-0 font-display text-[120px] md:text-[180px] text-bark/[0.04] whitespace-nowrap select-none pointer-events-none leading-none">
+    GALLERY
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-16">
+
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-px bg-gold"></div>
+          <span class="font-body text-xs tracking-[0.4em] uppercase text-gold">Visual Stories</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-6xl text-deep leading-tight">
+          Our <span class="italic text-bark">Gallery</span>
+        </h2>
+        <p class="font-body text-sm text-bark/70 max-w-md leading-relaxed tracking-wide">
+          A glimpse into our world — real treatments, real results, 
+          and the luxurious experience that awaits you.
+        </p>
+      </div>
+
+      <!-- Gallery Filter -->
+      <div class="flex flex-wrap gap-2" id="gallery-filter">
+        <button onclick="filterGallery('all')" data-gfilter="all"
+          class="gfilter-btn active font-body text-xs tracking-widest uppercase px-5 py-2 bg-deep text-cream border border-deep transition-all duration-300">
+          All
+        </button>
+        <button onclick="filterGallery('treatment')" data-gfilter="treatment"
+          class="gfilter-btn font-body text-xs tracking-widest uppercase px-5 py-2 border border-bark/20 text-bark/60 hover:border-deep hover:text-deep transition-all duration-300">
+          Treatments
+        </button>
+        <button onclick="filterGallery('results')" data-gfilter="results"
+          class="gfilter-btn font-body text-xs tracking-widest uppercase px-5 py-2 border border-bark/20 text-bark/60 hover:border-deep hover:text-deep transition-all duration-300">
+          Results
+        </button>
+        <button onclick="filterGallery('products')" data-gfilter="products"
+          class="gfilter-btn font-body text-xs tracking-widest uppercase px-5 py-2 border border-bark/20 text-bark/60 hover:border-deep hover:text-deep transition-all duration-300">
+          Products
+        </button>
+      </div>
+    </div>
+
+    <!-- Masonry Gallery Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-auto" id="gallery-grid">
+
+      <!-- Item 1 - Tall -->
+      <div class="gallery-item group relative overflow-hidden row-span-2 cursor-pointer" data-gcategory="treatment"
+        onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80"
+          alt="Facial Treatment Session"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 min-h-[300px]"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Treatment</span>
+          <p class="font-display text-lg text-cream mt-2">Facial Session</p>
+        </div>
+        <!-- Zoom icon -->
+        <div class="absolute top-4 right-4 w-8 h-8 bg-gold/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <i class="fas fa-expand text-deep text-xs"></i>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="gallery-item group relative overflow-hidden cursor-pointer" data-gcategory="results"
+        onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80"
+          alt="Glowing Skin Result"
+          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Results</span>
+          <p class="font-display text-lg text-cream mt-2">Glow Results</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 bg-gold/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <i class="fas fa-expand text-deep text-xs"></i>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="gallery-item group relative overflow-hidden cursor-pointer" data-gcategory="products"
+        onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&q=80"
+          alt="Skincare Products"
+          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Products</span>
+          <p class="font-display text-lg text-cream mt-2">Our Collection</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 bg-gold/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <i class="fas fa-expand text-deep text-xs"></i>
+        </div>
+      </div>
+
+      <!-- Item 4 - Tall -->
+      <div class="gallery-item group relative overflow-hidden row-span-2 cursor-pointer" data-gcategory="treatment"
+        onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=600&q=80"
+          alt="Luxury Treatment"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 min-h-[300px]"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Treatment</span>
+          <p class="font-display text-lg text-cream mt-2">Luxury Ritual</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 bg-gold/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <i class="fas fa-expand text-deep text-xs"></i>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="gallery-item group relative overflow-hidden cursor-pointer" data-gcategory="results"
+        onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80"
+          alt="Skin Result"
+          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Results</span>
+          <p class="font-display text-lg text-cream mt-2">Clear Skin</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 bg-gold/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <i class="fas fa-expand text-deep text-xs"></i>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="gallery-item group relative overflow-hidden cursor-pointer" data-gcategory="products"
+        onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80"
+          alt="Beauty Products"
+          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Products</span>
+          <p class="font-display text-lg text-cream mt-2">Premium Range</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 bg-gold/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <i class="fas fa-expand text-deep text-xs"></i>
+        </div>
+      </div>
+
+      <!-- Item 7 - Wide (spans 2 cols) -->
+      <div class="gallery-item group relative overflow-hidden cursor-pointer col-span-2" data-gcategory="treatment"
+        onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80"
+          alt="Treatment Room"
+          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Treatment</span>
+          <p class="font-display text-2xl text-cream mt-2">Our Studio Experience</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 bg-gold/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <i class="fas fa-expand text-deep text-xs"></i>
+        </div>
+      </div>
+
+      <!-- Item 8 -->
+      <div class="gallery-item group relative overflow-hidden cursor-pointer" data-gcategory="results"
+        onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400&q=80"
+          alt="Skin Glow"
+          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Results</span>
+          <p class="font-display text-lg text-cream mt-2">Natural Glow</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 bg-gold/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <i class="fas fa-expand text-deep text-xs"></i>
+        </div>
+      </div>
+
+      <!-- Item 9 -->
+      <div class="gallery-item group relative overflow-hidden cursor-pointer" data-gcategory="products"
+        onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=400&q=80"
+          alt="Luxury Skincare"
+          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <span class="font-body text-[10px] tracking-widest uppercase text-gold border border-gold/40 px-2 py-1">Products</span>
+          <p class="font-display text-lg text-cream mt-2">Luxury Line</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 bg-gold/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <i class="fas fa-expand text-deep text-xs"></i>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-16 flex flex-col items-center gap-4 text-center">
+      <p class="font-body text-sm text-bark/60 tracking-wide">Want results like these? Book your session today.</p>
+      <a href="#booking"
+        class="font-body text-xs tracking-widest uppercase px-10 py-4 bg-deep text-cream hover:bg-gold hover:text-deep transition-all duration-300 shadow-lg">
+        Book a Session
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Bottom line -->
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div id="lightbox" class="fixed inset-0 z-[999] bg-deep/95 flex items-center justify-center hidden px-4"
+  onclick="closeLightbox(event)">
+  <div class="relative max-w-4xl w-full">
+    <!-- Close button -->
+    <button onclick="closeLightbox()"
+      class="absolute -top-12 right-0 w-10 h-10 border border-gold/30 text-gold hover:bg-gold hover:text-deep transition-all duration-300 flex items-center justify-center z-10">
+      <i class="fas fa-times text-sm"></i>
+    </button>
+
+    <!-- Image -->
+    <img id="lightbox-img" src="" alt=""
+      class="w-full max-h-[80vh] object-contain border border-gold/20"/>
+
+    <!-- Caption -->
+    <div class="flex items-center justify-between mt-4">
+      <p id="lightbox-caption" class="font-display text-xl text-cream"></p>
+      <a href="#booking"
+        class="font-body text-xs tracking-widest uppercase px-6 py-2 bg-gold text-deep hover:bg-rose transition-all duration-300">
+        Book Now
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT SECTION ===== -->
+<section id="about" class="relative py-24 md:py-36 bg-deep overflow-hidden">
+
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#C9A84C08_0%,_transparent_70%)]"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-16 grid md:grid-cols-2 gap-16 items-center">
+
+    <!-- Left: Image Stack -->
+    <div class="relative flex justify-center">
+      <div class="relative w-72 md:w-80 h-[420px]">
+        <!-- Back image -->
+        <div class="absolute top-6 left-6 w-full h-full border border-gold/20 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=500&q=80"
+            alt="Studio" class="w-full h-full object-cover opacity-40"/>
+        </div>
+        <!-- Front image -->
+        <div class="relative w-full h-full overflow-hidden border border-gold/40 z-10">
+          <img src="https://images.unsplash.com/photo-1614159102964-41a5c7e02a4a?w=500&q=80"
+            alt="Skincare Expert"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep/60 to-transparent"></div>
+        </div>
+        <!-- Floating badge -->
+        <div class="absolute -right-8 bottom-10 z-20 bg-gold px-5 py-4 shadow-xl">
+          <p class="font-body text-[10px] tracking-widest uppercase text-deep">Experience</p>
+          <p class="font-display text-3xl text-deep mt-1">8+ Years</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Text -->
+    <div class="flex flex-col gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-px bg-gold"></div>
+        <span class="font-body text-xs tracking-[0.4em] uppercase text-gold">Our Story</span>
+      </div>
+      <h2 class="font-display text-4xl md:text-5xl text-cream leading-tight">
+        About <span class="italic text-gold">Nikky's skincare</span> Collection
+      </h2>
+      <p class="font-body text-sm text-rose/70 leading-relaxed tracking-wide">
+        NIKKY'S SKIN-CARE-HUB. was born from a deep passion for healthy, glowing skin. 
+        Founded with a mission to make premium skincare accessible to every skin type, 
+        we combine expert knowledge with luxurious treatments that truly deliver results.
+      </p>
+      <p class="font-body text-sm text-rose/70 leading-relaxed tracking-wide">
+        With over 8 years of professional experience and 500+ satisfied clients across 
+        Nigeria, we pride ourselves on personalized care, authentic products, and 
+        a warm, welcoming experience that keeps our clients coming back.
+      </p>
+
+      <!-- Values -->
+      <div class="grid grid-cols-2 gap-4 mt-2">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+            <i class="fas fa-leaf text-gold text-xs"></i>
+          </div>
+          <div>
+            <p class="font-body text-sm text-cream">Natural Ingredients</p>
+            <p class="font-body text-xs text-rose/40 mt-0.5">100% authentic & safe</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+            <i class="fas fa-heart text-gold text-xs"></i>
+          </div>
+          <div>
+            <p class="font-body text-sm text-cream">Client First</p>
+            <p class="font-body text-xs text-rose/40 mt-0.5">Personalized every time</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+            <i class="fas fa-award text-gold text-xs"></i>
+          </div>
+          <div>
+            <p class="font-body text-sm text-cream">Certified Expert</p>
+            <p class="font-body text-xs text-rose/40 mt-0.5">Professional & trusted</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+            <i class="fas fa-shield-alt text-gold text-xs"></i>
+          </div>
+          <div>
+            <p class="font-body text-sm text-cream">Safe & Hygienic</p>
+            <p class="font-body text-xs text-rose/40 mt-0.5">Strict standards always</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="#booking"
+        class="mt-2 inline-flex items-center gap-3 font-body text-xs tracking-widest uppercase px-8 py-4 bg-gold text-deep hover:bg-rose transition-all duration-300 w-fit shadow-lg shadow-gold/20">
+        Book With Us <i class="fas fa-arrow-right text-xs"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+</section>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section id="contact" class="relative py-24 bg-cream overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-16">
+
+    <!-- Header -->
+    <div class="flex flex-col items-center text-center gap-4 mb-16">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-px bg-gold"></div>
+        <span class="font-body text-xs tracking-[0.4em] uppercase text-gold">Get In Touch</span>
+        <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="font-display text-4xl md:text-6xl text-deep">
+        Contact <span class="italic text-bark">Us</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/2348000000000" target="_blank"
+        class="group flex flex-col items-center text-center gap-4 p-8 bg-white border border-rose/30 hover:border-[#25D366]/50 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+        <div class="w-14 h-14 rounded-full bg-[#25D366]/10 flex items-center justify-center group-hover:bg-[#25D366]/20 transition-colors duration-300">
+          <i class="fab fa-whatsapp text-[#25D366] text-2xl"></i>
+        </div>
+        <div>
+          <p class="font-body text-xs tracking-widest uppercase text-bark/50 mb-1">WhatsApp</p>
+          <p class="font-display text-xl text-deep">Chat With Us</p>
+          <p class="font-body text-sm text-bark/60 mt-1">+234 800 000 0000</p>
+        </div>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/Nikky'sskin-care-hub" target="_blank"
+        class="group flex flex-col items-center text-center gap-4 p-8 bg-white border border-rose/30 hover:border-pink-400/50 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+        <div class="w-14 h-14 rounded-full bg-pink-50 flex items-center justify-center group-hover:bg-pink-100 transition-colors duration-300">
+          <i class="fab fa-instagram text-pink-500 text-2xl"></i>
+        </div>
+        <div>
+          <p class="font-body text-xs tracking-widest uppercase text-bark/50 mb-1">Instagram</p>
+          <p class="font-display text-xl text-deep">Follow Us</p>
+          <p class="font-body text-sm text-bark/60 mt-1">@Nikky'sskin-care-hub</p>
+        </div>
+      </a>
+
+      <!-- Location -->
+      <div class="group flex flex-col items-center text-center gap-4 p-8 bg-white border border-rose/30 hover:border-gold/50 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+        <div class="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors duration-300">
+          <i class="fas fa-map-marker-alt text-gold text-2xl"></i>
+        </div>
+        <div>
+          <p class="font-body text-xs tracking-widest uppercase text-bark/50 mb-1">Location</p>
+          <p class="font-display text-xl text-deep">Find Us</p>
+          <p class="font-body text-sm text-bark/60 mt-1">Lagos, Nigeria</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="relative bg-deep pt-20 pb-8 overflow-hidden">
+
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#C9A84C08_0%,_transparent_60%)]"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-16">
+
+    <!-- Footer Top Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 pb-16 border-b border-white/10">
+
+      <!-- Brand Column -->
+      <div class="md:col-span-2 flex flex-col gap-5">
+        <div>
+          <span class="font-display text-3xl text-gold tracking-widest">Nikky's</span>
+          <span class="block font-body text-xs text-rose/50 tracking-[0.4em] uppercase mt-0.5">Skin-care-hub</span>
+        </div>
+        <p class="font-body text-sm text-rose/60 leading-relaxed max-w-sm tracking-wide">
+          Premium skincare treatments and products for every skin type. 
+          Your glow is our mission — experience the luxury you deserve.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex gap-3 mt-2">
+          <a href="https://instagram.com/Nikky'sskin-care-hub" target="_blank"
+            class="w-10 h-10 border border-white/10 flex items-center justify-center text-rose/50 hover:border-gold hover:text-gold transition-all duration-300">
+            <i class="fab fa-instagram text-sm"></i>
+          </a>
+          <a href="https://wa.me/2348000000000" target="_blank"
+            class="w-10 h-10 border border-white/10 flex items-center justify-center text-rose/50 hover:border-[#25D366] hover:text-[#25D366] transition-all duration-300">
+            <i class="fab fa-whatsapp text-sm"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank"
+            class="w-10 h-10 border border-white/10 flex items-center justify-center text-rose/50 hover:border-blue-400 hover:text-blue-400 transition-all duration-300">
+            <i class="fab fa-facebook text-sm"></i>
+          </a>
+          <a href="https://tiktok.com" target="_blank"
+            class="w-10 h-10 border border-white/10 flex items-center justify-center text-rose/50 hover:border-white hover:text-white transition-all duration-300">
+            <i class="fab fa-tiktok text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="flex flex-col gap-5">
+        <h4 class="font-body text-xs tracking-[0.3em] uppercase text-gold">Quick Links</h4>
+        <ul class="flex flex-col gap-3">
+          <li><a href="#home" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Home</a></li>
+          <li><a href="#services" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Services</a></li>
+          <li><a href="#products" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Products</a></li>
+          <li><a href="#gallery" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Gallery</a></li>
+          <li><a href="#about" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">About</a></li>
+          <li><a href="#booking" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Book a Session</a></li>
+        </ul>
+      </div>
+
+      <!-- Services & Contact -->
+      <div class="flex flex-col gap-5">
+        <h4 class="font-body text-xs tracking-[0.3em] uppercase text-gold">Our Services</h4>
+        <ul class="flex flex-col gap-3">
+          <li><a href="#booking" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Facial Treatment</a></li>
+          <li><a href="#booking" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Glow Treatment</a></li>
+          <li><a href="#booking" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Acne Therapy</a></li>
+          <li><a href="#booking" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Deep Hydration</a></li>
+          <li><a href="#booking" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Anti-Aging Ritual</a></li>
+          <li><a href="#booking" class="font-body text-sm text-rose/60 hover:text-gold transition-colors duration-300 tracking-wide">Skin Consultation</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Newsletter -->
+    <div class="py-10 border-b border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <p class="font-display text-xl text-cream">Get Skincare Tips & Offers</p>
+        <p class="font-body text-xs text-rose/50 tracking-wide mt-1">Subscribe to our newsletter. No spam, ever.</p>
+      </div>
+      <div class="flex w-full md:w-auto">
+        <input type="email" placeholder="Your email address..."
+          class="font-body text-sm px-5 py-3 bg-white/5 border border-white/10 text-cream placeholder-rose/30 focus:outline-none focus:border-gold transition-colors duration-300 w-full md:w-72"/>
+        <button
+          class="font-body text-xs tracking-widest uppercase px-6 py-3 bg-gold text-deep hover:bg-rose transition-all duration-300 whitespace-nowrap">
+          Subscribe
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="font-body text-xs text-rose/30 tracking-wide text-center md:text-left">
+        © 2025 NIKKY'S SKIN-CARE-HUB.. All rights reserved.
+      </p>
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 rounded-full bg-gold animate-pulse"></div>
+        <p class="font-body text-xs text-rose/30 tracking-wide">Available for bookings — Lagos, Nigeria</p>
+      </div>
+      <div class="flex gap-6">
+        <a href="#" class="font-body text-xs text-rose/30 hover:text-gold transition-colors duration-300 tracking-wide">Privacy Policy</a>
+        <a href="#" class="font-body text-xs text-rose/30 hover:text-gold transition-colors duration-300 tracking-wide">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ===== SCROLL TO TOP BUTTON ===== -->
+<button id="scroll-top"
+  onclick="window.scrollTo({top:0, behavior:'smooth'})"
+  class="fixed bottom-8 right-8 z-50 w-12 h-12 bg-gold text-deep flex items-center justify-center shadow-lg shadow-gold/30 opacity-0 translate-y-4 transition-all duration-300 hover:bg-rose">
+  <i class="fas fa-arrow-up text-sm"></i>
+</button>
+
+<!-- ===== WHATSAPP FLOATING BUTTON ===== -->
+<a href="https://wa.me/2347076229524" target="_blank"
+  class="fixed bottom-8 left-8 z-50 flex items-center gap-3 bg-[#25D366] text-white px-5 py-3 shadow-lg shadow-[#25D366]/30 hover:shadow-xl hover:scale-105 transition-all duration-300">
+  <i class="fab fa-whatsapp text-xl"></i>
+  <span class="font-body text-xs tracking-widest uppercase">Chat Us</span>
+</a>
+  </main>
+
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ===== PAGE LOADER =====
+const loaderTexts = ['Loading...', 'Preparing...', 'Almost Ready...', 'Welcome ✨'];
+let loaderProgress = 0;
+let textIndex = 0;
+
+const loaderInterval = setInterval(() => {
+  loaderProgress += Math.floor(Math.random() * 20 + 10);
+  if (loaderProgress > 100) loaderProgress = 100;
+
+  document.getElementById('loader-bar').style.width = loaderProgress + '%';
+
+  if (textIndex < loaderTexts.length - 1) {
+    textIndex++;
+    document.getElementById('loader-text').textContent = loaderTexts[textIndex];
+  }
+
+  if (loaderProgress >= 100) {
+    clearInterval(loaderInterval);
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      loader.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      loader.style.opacity = '0';
+      loader.style.transform = 'scale(1.05)';
+      setTimeout(() => loader.style.display = 'none', 800);
+    }, 400);
+  }
+}, 350);
+
+    // Scroll to top button visibility
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scroll-top');
+  if (window.scrollY > 400) {
+    btn.classList.remove('opacity-0', 'translate-y-4');
+    btn.classList.add('opacity-100', 'translate-y-0');
+  } else {
+    btn.classList.add('opacity-0', 'translate-y-4');
+    btn.classList.remove('opacity-100', 'translate-y-0');
+  }
+});
+
+    // Gallery Filter
+function filterGallery(category) {
+  const items = document.querySelectorAll('.gallery-item');
+  const btns = document.querySelectorAll('.gfilter-btn');
+
+  btns.forEach(btn => {
+    if (btn.dataset.gfilter === category) {
+      btn.classList.add('bg-deep', 'text-cream', 'border-deep');
+      btn.classList.remove('text-bark/60', 'border-bark/20');
+    } else {
+      btn.classList.remove('bg-deep', 'text-cream', 'border-deep');
+      btn.classList.add('text-bark/60', 'border-bark/20');
+    }
+  });
+
+  items.forEach(item => {
+    if (category === 'all' || item.dataset.gcategory === category) {
+      item.style.display = 'block';
+      item.style.animation = 'fadeSlideUp 0.4s ease forwards';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// Lightbox
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  const caption = el.querySelector('.font-display');
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-caption').textContent = caption ? caption.textContent : '';
+  document.getElementById('lightbox').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (!e || e.target === document.getElementById('lightbox') || e.target.closest('button')) {
+    document.getElementById('lightbox').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+}
+
+// Close lightbox with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
+    // Testimonial Slider
+let currentSlide = 0;
+const totalSlides = 2;
+
+function updateSlider() {
+  const wrapper = document.getElementById('slides-wrapper');
+  wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  // Update dots
+  document.querySelectorAll('.dot').forEach((dot, i) => {
+    if (i === currentSlide) {
+      dot.classList.add('bg-gold', 'w-6');
+      dot.classList.remove('bg-white/20', 'w-3');
+    } else {
+      dot.classList.remove('bg-gold', 'w-6');
+      dot.classList.add('bg-white/20', 'w-3');
+    }
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlider();
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateSlider();
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  updateSlider();
+}
+
+// Auto slide every 5 seconds
+setInterval(nextSlide, 5000);
+
+    // Skin type selector
+function selectSkin(btn) {
+  document.querySelectorAll('.skin-btn').forEach(b => {
+    b.classList.remove('bg-gold', 'text-deep', 'border-gold');
+    b.classList.add('text-bark/60', 'border-rose/30');
+  });
+  btn.classList.add('bg-gold', 'text-deep', 'border-gold');
+  btn.classList.remove('text-bark/60', 'border-rose/30');
+  document.getElementById('b-skin').value = btn.dataset.skin;
+}
+
+// Booking form submit
+function submitBooking(e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('btn-text');
+  btn.textContent = 'Processing...';
+
+  setTimeout(() => {
+    document.getElementById('booking-form').classList.add('hidden');
+    const success = document.getElementById('booking-success');
+    success.classList.remove('hidden');
+    success.classList.add('flex');
+  }, 1500);
+}
+
+// Reset booking form
+function submitBooking(e) {
+  e.preventDefault();
+  const btn = document.getElementById('btn-text');
+  btn.textContent = 'Processing...';
+
+  const name    = document.getElementById('b-name').value;
+  const phone   = document.getElementById('b-phone').value;
+  const email   = document.getElementById('b-email').value;
+  const service = document.getElementById('b-service').value;
+  const date    = document.getElementById('b-date').value;
+  const time    = document.getElementById('b-time').value;
+  const skin    = document.getElementById('b-skin').value;
+  const notes   = document.getElementById('b-notes').value;
+
+  const message = 
+`Hello NIKKY'S SKIN-CARE-HUB. 💆‍♀️
+
+*NEW BOOKING RECEIVED*
+
+👤 *Name:* ${name}
+📞 *Phone:* ${phone}
+📧 *Email:* ${email}
+💆 *Service:* ${service}
+📅 *Date:* ${date}
+⏰ *Time:* ${time}
+🧴 *Skin Type:* ${skin}
+📝 *Notes:* ${notes || 'None'}
+
+_Sent from NIKKY'S SKIN-CARE-HUB. Website_`;
+
+  setTimeout(() => {
+    // Show success
+    document.getElementById('booking-form').classList.add('hidden');
+    const success = document.getElementById('booking-success');
+    success.classList.remove('hidden');
+    success.classList.add('flex');
+
+    // Open WhatsApp with booking details
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/2347076229524?text=${encoded}`, '_blank');
+  }, 1500);
+}
+
+// Set minimum date to today
+document.addEventListener('DOMContentLoaded', () => {
+  const dateInput = document.getElementById('b-date');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+  }
+});
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      menuIcon.className = mobileMenu.classList.contains('open')
+        ? 'fas fa-times' : 'fas fa-bars';
+    });
+
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      menuIcon.className = 'fas fa-bars';
+    }
+
+    
+  </script>
+
+</body>
+</html>
